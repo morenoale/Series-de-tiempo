@@ -1,0 +1,5 @@
+install.packages("foreign")
+require(foreign)
+library (foreign)
+serie1 <- read.csv("C://Users//USUARIO//Documents//cocacola.csv")
+View(serie1)
