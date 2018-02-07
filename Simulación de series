@@ -1,0 +1,28 @@
+## SIMULACION DE SERIES DE TIEMPO ##
+# Vamos a simular 1 indicador
+# Para la simulacion en principio necesitamos alguna informacion
+# Orden: Valor maximo, minimo, el numero de datos
+
+# En este ejemplo camos a proponer la poblacion en México
+# Valor minimo: 100, Valor maximo: 120, 15 datos que inicie en 2000
+pob <- sample(100:120, 15, replace = F)
+pob
+# La convertimos en serie de tiempo: 
+# (ts) funcion para convertir a serie de tiempo.
+# Argumentos: frequency; cada cuando pasa al año. (Anual:1,Mensual:12,Trimestral: 4,Diario: 365)
+pobts <- ts(pob,frequency = 1,start = (2000))
+end (pobts)
+start(pobts)
+plot(pobts)
+plot(aggregate(pobts))
+# conocer la funcion de aggregate
+
+
+
+## Bajar del inegi (ENOE) ocupacion de las personas
+# importar csv
+infor4 <- read.csv("C:/Users/USUARIO/Documents/infor.csv")
+#convertir los datos s serie de tiempo con la funcion ts
+infor4ts <- ts(infor4,frequency = 4, start = (2005))
+plot(infor4ts)
+plot(infor4ts, xlab="Año", ylab="Tasas de informalidad laboral",ylim=c(0,100), xlim=c(2005,2018),main="Gráfica de serie de tiempo")
