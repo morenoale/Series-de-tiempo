@@ -1,0 +1,62 @@
+# AirPassengers
+install.packages("forecast")
+require(forecast)
+View(AirPassengers)
+
+AirPassengers
+
+help(AirPassengers)
+class(AirPassengers) # Conocer que tipo de datos es AirPassengers
+start(AirPassengers) # Saber cuando inicia
+print (AirPassengers) # Imprimir todos las datos de AirPassengers
+length(AirPassengers) # Conocer cuantos datos tiene AirPassengers
+head(AirPassengers, n=8) #Muestra los primeros 8 datos de la serie de tiempo. 
+tail(AirPassengers, n=8) #muestra los ultimos 8 datos de la serie de tiempo.
+plot(AirPassengers)
+plot(AirPassengers,xlab="Años", ylab="Número de pasajeros", type= "s")
+
+
+# EJERCICIO DE CLASE
+# De la pagina del INEGI bajar la tasa informalidad laboral en valores relativos a nivel nacional,
+# todos los trimestres desde el 2005-2017.
+# Esta base importarla a R y la declaran serie de tiempo con 
+# el inicio, fin, y frecuencia de la ST, 
+# Una vez que hayan declarado la serie usan la funcion
+# print, lenght, head y tail (con 10 datos) y explicarlas 
+# Graficar la serie de tiemo con 3 tipos de graficas diferentes y tres colores
+# Investigar y usar las funciones time, deltat, cycle y frequency y explicar para qué sirven 
+
+
+
+## Bajar del inegi (ENOE) ocupacion de las personas
+# importar csv
+infor4 <- read.csv("C:/Users/USUARIO/Documents/infor.csv")
+#convertir los datos s serie de tiempo con la funcion ts
+infor4ts <- ts(infor4,frequency = 4, start = (2005), end = (2017))
+print (infor4ts) # Imprimir todos las datos de Informalidad Laboral
+length(infor4ts) # Conocer cuantos datos tiene Informalidad Laboral
+head(infor4ts, n=10) #Muestra los primeros 10 datos de la serie de tiempo. 
+tail(infor4ts, n=10) #muestra los ultimos 8 datos de la serie de tiempo.
+# GRAFICAS
+help("plot")
+plot(infor4ts)
+# Tipo de grafica 1:
+plot(infor4ts, xlab="Año", ylab="Tasas de informalidad laboral",ylim=c(50,60), xlim=c(2005,2017),main="Gráfica de serie de tiempo", type="s", col="red") 
+# Tipo de grafica 2:
+plot(infor4ts, xlab="Año", ylab="Tasas de informalidad laboral",ylim=c(50,60), xlim=c(2005,2017),main="Gráfica de serie de tiempo", type="o", col="purple") 
+# Tipo de grafica 3:
+plot(infor4ts, xlab="Año", ylab="Tasas de informalidad laboral",ylim=c(50,60), xlim=c(2005,2017),main="Gráfica de serie de tiempo", type="h", col="blue") 
+
+
+# INVESTIGAR FUNCIONES: 
+help(time)
+time(infor4ts) # Crea un vector del tiempo donde lo divide en este caso, por trimestres
+
+help(deltat) # El tiempo que divide los años, en este caso por ser trimestral= 0.25
+deltat(infor4ts)
+
+help("cycle")  # Da las posiciones de los ciclos en cada posicion. 
+cycle(infor4ts)
+
+help("frequency") #Muestra el numero de periodos al año, por ser trimestral seria: 4.
+frequency(infor4ts)
