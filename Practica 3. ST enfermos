@@ -1,0 +1,30 @@
+
+
+## DATOS DE REGISTRO DE ENFERMOS DEL 2000 AL 2010 SEMESTRAL
+# 350,358,367,380,388,402,415,432,450,
+# NA, NA, NA, NA, 367,342,324,315,310,298
+
+# Grafiquen este vector
+# declaren y grafiquen esta serie.
+# imputan datos faltantes ¿como lo haran?
+# grafiquen la nueva serie con la imputacion
+# por ultimo grafiquen la serie de tiempo
+# EustockMarkers con la funcion plot.... que observas?
+# Ahota grafiquen EuUtockmarkets con la siguiente funcion
+# plot.ts (EuStockMarkets, col=1:4)
+
+enfermos <- c(350,358,367,367,380,388,402,415,432,450,NA, NA,NA,NA, 367,342,324,315,310,298)
+enfermosts <- ts(enfermos, frequency = 2)
+plot(enfermosts)
+# Para imputar: 
+mean(enfermosts, na.rm = T)
+
+# Imputar datos faltas a traves de la media. 
+enfermosts[11:14] <- mean(enfermosts, na.rm = T)
+enfermosts
+# Graficando ya con datos completos: 
+plot(enfermosts, frequency=2)
+
+
+plot(EuStockMarkets)
+ts.plot(EuStockMarkets, col=1:4)
