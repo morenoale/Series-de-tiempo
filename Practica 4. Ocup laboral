@@ -1,0 +1,112 @@
+require("forecast")
+help("AirPassengers")
+View(AirPassengers)
+??AirPassengers ### directo a internet
+
+aa<-AirPassengers
+plot(aa)
+
+## serie con una linea sin picos
+# muestra la tendencia de la serie
+plot(aggregate(aa))
+
+# grafica periodos donde hay estacionalidad
+# junio julio y agosto donde hay mayor incremento
+boxplot(aa~cycle(aa))
+
+### tasa de desocupacion del inegi
+# ya que es trimestral la convertimos 
+require("foreing")
+deso<-read.csv("/Users/gemaitzeltorresmejia/Downloads/desocupa.csv")
+desots<- ts(deso, frequency = 4, start = 2005)
+
+## para hacerlo anual
+desoanual <- aggregate(desots)/4
+#deso<- ts(deso, frequency = 4, start = c(2005,3)) inicia en el triemestre 3 
+
+x11() # abre una ventana
+layout(1:2) # una ventana con 2 graficas
+plot(desots)
+plot(desoanual)
+
+#### dividir la serie en 2 partes 
+deso1<- window(desots, start = c(2008,2), end = c(2015, 4))
+plot(deso1)
+
+######## Ejercicio 01 ##########
+# tasa de ocupacion parcial y desocupacion
+# tasa de asalariados
+#til1
+
+ejer<-read.csv("/Users/gemaitzeltorresmejia/Downloads/til.csv")
+ejer<- data.frame(ejer)
+desupar<- ts(ejer[,1], frequency = 4, start = 2005)
+asal<- ts(ejer[,2], frequency = 4, start = 2005)
+til1<- ts(ejer[,3], frequency = 4, start = 2005)
+
+x11()
+plot(desupar)
+plot(asal)
+plot(til1)
+
+#### seie de tiempo multile
+multiple<- ts.intersect(desupar, asal, til1)
+plot(multiple)
+
+######### Ejercicio 02 ########
+## Obtengn de donde quieran 4 seris de tiempo,
+# con 30 datos minimo, deben de tener sustento
+# para compararlas. 
+# 1. Importarlas y declararlas como serie de tiempo,
+# graficarlas y crear serie multiple y graficarlas como multiple
+# didvidir dos de estas series en tres intervalos
+# por ultimo,elegir dos series y aplicar aggregate para conocer
+# su tendencia, hacer grafica de cajas e interpretar los periodos
+
+
+require("foreing")
+ejer<-read.csv("/Users/gemaitzeltorresmejia/Downloads/ocupada.csv")
+pob<- data.frame(ejer)
+ocupada<- ts(pob[,1], frequency = 4, start = 2005)
+desocupada<- ts(pob[,2], frequency = 4, start = 2005)
+disponible<- ts(pob[,3], frequency = 4, start = 2005)
+nodispo<- ts(pob[,4], frequency = 4, start = 2005)
+
+x11()
+layout(1:4)
+plot(ocupada)
+plot(desocupada)
+plot(disponible)
+plot(nodispo)
+
+multiple<- ts.intersect(ocupada, desocupada, disponible, nodispo)
+plot(multiple)
+
+ocu1<- window(ocupada, start = c(2008,2), end = c(2015, 4))
+ocu2<- window(ocupada, start = c(2008,1), end = c(2010, 4))
+ocu3<- window(ocupada, start = c(2006,3), end = c(2009, 2))
+plot(ocu3)
+
+dis1<- window(disponible, start = c(2008,2), end = c(2015, 4))
+dis2<- window(disponible, start = c(2008,1), end = c(2010, 4))
+dis3<- window(disponible, start = c(2006,3), end = c(2009, 2))
+plot(dis3)
+
+
+# muestra la tendencia de la serie
+plot(aggregate(ocupada))
+
+# grafica periodos donde hay estacionalidad
+# el segundo y tercer triemestre que son vacaciones 
+# es donde hay mas poblacion ocupada
+boxplot(ocupada~cycle(ocupada))
+
+# muestra la tendencia de la serie
+plot(aggregate(nodispo))
+# hay una tendencia a la baja y despues a la alza 
+# ya despues de la crisss
+
+# grafica periodos donde hay estacionalidad
+# el segundo triemestre  
+# es donde hay mas poblacion no disponible
+boxplot(nodispo~cycle(nodispo))
