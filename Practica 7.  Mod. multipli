@@ -1,0 +1,62 @@
+# MODELO MULTIPLICATIVO
+install.packages("fpp")
+install.packages("forecast")
+require(fpp)
+require(forecast)
+deso <- read.csv("C://Users//USUARIO//Documents//desocupa.csv")
+tsdeso <- ts(deso, frequency = 4, start = 20005)
+tsdeso0 <- ts(deso [1:52,], frequency = 4, start=2005)
+tsdeso1 <- ts(as.vector())
+a0 <- decompose(tsdeso0)
+names(a0)
+a1 <- stl (tsdeso0, s.window = 4)
+names(a1)
+a1$time.series
+x11()
+plot(tsdeso0, col="blue", main = "Desocupacion trimestral", ylab = "Tasa de desocupados", xlab = "Años")
+lines(a1$time.series[,2], col="red", ylab="tendencia")
+
+# La grafica muestra el componente tendencia en rojo y los datos originales en azul. 
+# La tendencia muestra movimiento sobre toda la serie
+# ignorando la estacionalidad y pequeñas fluctuaciones aleatorias. 
+x11()
+plot(a1)
+
+# Muestra una descomposicion aditiva, el metodo que se uso para descomponer es el stl()
+
+# ESTACIONALIDAD 
+# lo anterior se utiliza la funcion monthplot()
+monthplot(a1$time.series)
+
+# Se da por yt-st, para el modelo multiplicativo se define yt/st
+# Para hacer un ajuste estacional y desestacionalizar la serie se utiliza la funcion seasadj()
+# Si la estacionalidad no es un elemento prioritario en la serie. 
+# Entonces eliminar estacionalidad puede resultar beneficio 
+# En consecuencia, los datos de empleo (y muchas otras series economicas) generalmente se ajustan estacionalmente 
+x11()
+plot(tsdeso0, col="black", ylab="Ajuste estacional")
+# En esta grafica se puede observar que se mantienen la tendencia, sin embargo
+# los picos en periodos constantes 
+
+
+## EJERCICIO 
+#Escoger una serie de tiempo y realicen lo sig: 
+# 1) Descompongan la serie con la funcion stl y planeen esta descomposicion
+#    con uno de los datos que les arroje 
+# 2) Grafiquen de esta serie el componente estacional y el componente tendencia (2graficas)
+#    En esta grafica usar la funcion lines 
+# 3) eliminen el componente estacional y grafiquenlo... 
+# compueben en una ecuacion la formula del modelo aditivo eliminando estacionalidad. 
+
+presion <- read.csv("C://Users//USUARIO//Documents//tasapresion.csv")
+tspresion <- ts(presion, frequency = 4, start = 20005)
+tspresion0 <- ts(presion [1:52,], frequency = 4, start=2005)
+tsdeso1 <- ts(as.vector())
+a0 <- decompose(tsdeso0)
+names(a0)
+a1 <- stl (tsdeso0, s.window = 4)
+names(a1)
+a1$time.series
+x11()
+plot(tsdeso0, col="blue", main = "Desocupacion trimestral", ylab = "Tasa de desocupados", xlab = "Años")
+lines(a1$time.series[,2], col="red", ylab="tendencia")
