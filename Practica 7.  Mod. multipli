@@ -51,12 +51,4 @@ plot(tsdeso0, col="black", ylab="Ajuste estacional")
 presion <- read.csv("C://Users//USUARIO//Documents//tasapresion.csv")
 tspresion <- ts(presion, frequency = 4, start = 20005)
 tspresion0 <- ts(presion [1:52,], frequency = 4, start=2005)
-tsdeso1 <- ts(as.vector())
-a0 <- decompose(tsdeso0)
-names(a0)
-a1 <- stl (tsdeso0, s.window = 4)
-names(a1)
-a1$time.series
-x11()
-plot(tsdeso0, col="blue", main = "Desocupacion trimestral", ylab = "Tasa de desocupados", xlab = "Años")
-lines(a1$time.series[,2], col="red", ylab="tendencia")
+
