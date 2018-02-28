@@ -1,0 +1,29 @@
+# PROMEDIO MOVIL
+crimenes <- c(12632,13607,12160,13335,14553,14654,12791,11923,10225,9847)
+tscrimenes <- ts(crimenes, start = 1980)
+install.packages("forecast")
+require(forecast)
+ma(tscrimenes, order=4) # Promedio movil de la serie de tiempo 
+ma5crimenes <- c( NA,  NA, 13257.4, 13661.8, 13498.6, 13451.2, 12829.2, 11888.0,NA,  NA)
+macrimenes <- data.frame(crimenes, ma5crimenes)
+View(macrimenes) # 2 columnas. 
+# En el data frame en la segunda columna, se tiene el promedio movil de orden 5 que expone un estimado de la 
+# tendencia. En el primer valor es el promedio de las primeras 5 observaciones, en el segundo valor, 
+# corresponde a el promedio de los valores de 1981 a 1985 y asi sucesivamente. 
+# No existen valores para los dos primeros años ni para los ultimos 2, debido a que no existen datos para estos valores 
+# por ser un promedio movil de orden 5. En la ecuacion si m=5 entonces k=2; m=2(k).
+
+# Graficando con orden 5: 
+plot(tscrimenes, main=" Crimenes México orden 5", ylab="Millones de personas", xlab="Años")
+lines(ma(tscrimenes,5), col="red")
+
+# Graficando con orden 4:
+plot(tscrimenes, main=" Crimenes México orden 4", ylab="Millones de personas", xlab="Años")
+lines(ma(tscrimenes,4), col="red")
+
+# Como se puede observar en las graficas la tendencia se observa de color rojo y esta mas suavizada que la 
+# serie, el principal movimiento se detecta sin todos lo pequeños cambios. 
+# el promedio movil no estima la tendencia al inicio y al final de la serie despues hay metodos 
+# que si permiten estimar el inicio y final de la tendencia. 
+# El orden de promedio moviles determinan el suavizado de la tendencia, en general un orden 
+# grande significa una curva mas suavizada.
