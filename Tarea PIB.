@@ -1,0 +1,30 @@
+#Bajar los datos del PIB en México desde el primer dato que se encuentre
+#Tasa de crecimiento anual del PIB hasta 2005
+
+#Dividir la grafica en dos
+#grafica 1:  1950 a 1980
+#grafica 2: 1981 a 2015
+
+
+#Hacer una grafica general de la serie de tiempo
+#las tres graficas mostrarlas en la misma ventana
+#la grafica con titulo principal, etiqueta eje x y tambien subtitulo
+
+
+pib<-read.csv("C://Users//Brenda//Documents//SERIES//Crecimiento anual.csv")
+tspib<- ts(pib, frequency = 1, start = 1961)
+
+tspib1 <- window(tspib, end=1980)
+tspib2 <- window(tspib, start=1981)
+
+x11()
+layout(1:3)
+plot(tspib, col=2, xlab="Periodo 1961 - 2016", ylab="Porcentaje", main="Crecimiento anual del PIB de México")
+points(1995, -5.75868238, pch=15,col=1)
+text(1995, -5.75868238, labels = "Crisis del 95")
+plot(tspib1, col=3, xlab="Periodo 1961 - 1980", ylab="Porcentaje")
+plot(tspib2, col=4, xlab="Periodo 1981 - 2016", ylab="Porcentaje", sub="Fuente: https://datos.bancomundial.org/indicador/NY.GDP.MKTP.KD.ZG?end=2016&locations=MX&start=1961&view=chart")
+points(1995, -5.75868238, pch=15, col=1)
+text(1995, -5.75868238, labels = "Crisis del 95")
+points(2009, -4.700338863, pch=15,col=1)
+text(2009, -4.700338863, labels = "Crisis del 2009")
