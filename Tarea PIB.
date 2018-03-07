@@ -11,7 +11,7 @@
 #la grafica con titulo principal, etiqueta eje x y tambien subtitulo
 
 
-pib<-read.csv("C://Users//Brenda//Documents//SERIES//Crecimiento anual.csv")
+pib<-read.csv("C://Users//Alejandra//Documents//Crecimientoanual.csv")
 tspib<- ts(pib, frequency = 1, start = 1961)
 
 tspib1 <- window(tspib, end=1980)
