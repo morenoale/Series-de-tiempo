@@ -1,0 +1,67 @@
+# MODELOS LINEALES PARA PRONOSTICAR
+# Son la aplicacion de pronosticos lineales como los metodos
+# de la media, el ingenuo, el ingenuo estacional y el de deriva el pronostico
+
+# INGENUO. 
+# Esta basado en la ultima observacion que arroja la serie de tiempo. 
+# El decir este pronostico asume que la observacion mas importante es la ultima. 
+# Funcion en R --> naive(serie,h=nuem pronosticos)
+# n es el numero de pronosticos que se requiere. 
+
+# METODO DE LA MEDIA
+# Este metodo le da el mismo eso a todos los datos u observaciones, 
+# se asume con este metodo que todas las observaciones
+# tienen la misma importancia por lo que el pronostico es un primedio de todas las observaciones. 
+# Funcion en R --> meanf(serie, h=numero de pronosticos)
+
+# INGENUO ESTACIONAL. 
+# Este metodo se utiliza en ST con alta estacionalidad este proceso. 
+# consiste en darle mayor peso o la mayor ponderacion al dato 
+# del mismo periodo en el año anterior, p. ejemplo. trimestre 2 del 2005 es: 
+# igual al trimestre 2 del 2006.
+# Funcion en R --> snaive(serie, h=numero de pronosticos)
+
+# METODO DE LA DERIVA
+# Este metodo consiste en que el pronostico puede incrementar o 
+# reducirse sobre el tiempo, dependiendo del promedio de los cambios 
+# historicos de la ST. 
+# Funcion en R --> rwf(serie, h=numer de pronostico, drift=TRUE)
+
+# EJERCICIO PIB
+des0 <- read.csv("C:/Users/USUARIO/Downloads/desocupacion.csv")
+dests <- ts(des0, start = 2005, frequency = 4)
+install.packages("fpp")
+require(fpp)
+dests
+desocmod1 <- meanf(dests,h=10)
+desocmod2 <- naive(dests,h=10)
+desocmod3 <- snaive(dests,h=10)
+desocmod4 <- rwf(dests,h=10, drift=TRUE) #drift: deriva. 
+x11()
+plot(desocmod1, main="Tasa de desocupacion trimestral", col="green")
+lines(desocmod1$mean, col="green")
+lines(desocmod2$mean, col="black")
+lines(desocmod3$mean, col="purple")
+lines(desocmod4$mean, col="orange")
+legend("topleft", lty=1, col=c("green", "black","purple", "orange"), legend = c("media","ingenuo", "ingenuo estacional","deriva" ))
+
+
+
+#  Obtener los datos ajustados segun cada modelo 
+x11()
+plot(desocmod1, main="Tasa de desocupacion trimestral", col="green")
+lines(desocmod1$fitted, col="green")
+lines(desocmod2$fitted, col="black")
+lines(desocmod3$fitted, col="purple")
+lines(desocmod4$fitted, col="orange")
+legend("topleft", lty=1, col=c("green", "black","purple", "orange"), legend = c("media","ingenuo", "ingenuo estacional","deriva" ))
+names(desocmod1)
+
+
+# TELEVISA, 1 AÑO DIARIO PRECIO AL CIERRE. 
+# EJERCICIO CON UNA SERIE DE TIEMPO. 
+# Apliquen los 4 metodos de pronosticos y grafiquenlos. 
+# segum las graficas elijan que metodos es el mejor para pronosticar
+# y tambien grafiquen los datos ajustados y plantes segun su grafica
+# cual es el metodo que mejor se ajusta a los datos reales
+# con base a la grafica de datos reales, no ajustados. 
