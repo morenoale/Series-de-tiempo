@@ -1,0 +1,62 @@
+# DESARROLLA UN SCRIPT EN R
+# ALEJANDRA MORENO GARCIA
+
+
+# 1) Genera 4 series de tiempo con nombre multiple1.
+# Los ramos de estas series son serie 
+#       1) de 15 a 35.
+#       2) de 100 a 200; 
+#       3) 29 a 49.
+#       4) 42 a 162
+
+# Las series deben tener 250 mensuales e inician en el tercer mes de 1990
+# Hacer estos datos como data frame. 
+# Genera cada una de las columnas en series de tiempo. 
+# 1.1) De la serie 1,2 series de tiempo y dividenlas (con funcion en r)
+      # en 2 series que vayan de 1990 a 2003 y de 1998 a 2006 y despues graficar 
+# 1.2) Dividir la serie 3 y 4 a traves de corchetes desde la observacion 150 a la 250.
+# 1.3) De la series (la que quieran) obtener y generar 2 data frame de la Tendencia y la estacionalidad. 
+
+# 1.-
+datos1 <- sample(15:35,250, replace=TRUE)
+datos2 <- sample(100:200,250, replace = TRUE)
+datos3 <- sample(29:49,250,replace = TRUE)
+datos4 <- sample(42:162,250, replace = TRUE)
+
+multiple1 <- data.frame(datos1,datos2,datos3,datos4)
+
+serie1 <- ts(multiple1[,1], start = c(1990,3), frequency = 12)
+serie2 <- ts(multiple1[,2], start = c(1990,3), frequency = 12)
+serie3 <- ts(multiple1[,3], start = c(1990,3), frequency = 12)
+serie4 <- ts(multiple1[,4], start = c(1990,3), frequency = 12)
+
+
+
+
+# 1.1.-
+serie1a <- window(serie1, stars=c(1990,3), end=2003)
+serie1b <- window(serie1, stars=1998, end=2006 )
+
+x11()
+layout(1:3) 
+plot(serie1, col="red", ylab="Serie 1")
+plot(serie1a, col="purple", ylab="Serie 1a")
+plot(serie1a, col="green", ylab="Serie 1b")
+
+
+
+
+# 1.2.- 
+serie3a <- ts(serie3[150:250], start = c(2002,9), frequency = 12)
+serie4a <- ts(serie4[150:250], start = c(2002,9), frequency = 12)
+
+
+
+# 1.3.-
+names(serie1)
+descomposicion1 <- stl(serie1, s.window = 12)
+descomposicion2 <- stl(serie2, s.window = 12)
+datosserie1 <- data.frame(descomposicion1$time.series[,2], descomposicion1$time.series[,3])
+View(datosserie1)
+datosserie2 <- data.frame(descomposicion2$time.series[,2], descomposicion2$time.series[,3])
+
