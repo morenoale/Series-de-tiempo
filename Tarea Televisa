@@ -1,0 +1,38 @@
+# TAREA TELEVISA, 1 AÑO DIARIO PRECIO AL CIERRE. 
+# EJERCICIO CON UNA SERIE DE TIEMPO. 
+# Apliquen los 4 metodos de pronosticos y grafiquenlos. 
+# segun las graficas elijan que metodos es el mejor para pronosticar
+# y tambien grafiquen los datos ajustados y plantes segun su grafica
+# cual es el metodo que mejor se ajusta a los datos reales
+# con base a la grafica de datos reales, no ajustados. 
+
+tel <- read.csv("file:///C:/Users/USER/Documents/Datos históricos televisa.csv")
+View(tel)
+telts <- ts(tel$Cierre, start = 2017, frequency = 364)
+View(telts)
+install.packages("fpp")
+require("fpp")
+telts
+telmod1 <- meanf(telts,h=10)
+telmod2 <- naive(telts,h=10)
+telmod3 <- snaive(telts,h=10)
+telmod4 <- rwf(telts,h=10, drift=TRUE) #drift: deriva. 
+x11()
+plot(telmod1, main="Precios al cierre de Televisa", col="green")
+lines(telmod1$mean, col="green")
+lines(telmod2$mean, col="black")
+lines(telmod3$mean, col="purple")
+lines(telmod4$mean, col="orange")
+legend("topleft", lty=1, col=c("green", "black","purple", "orange"), legend = c("media","ingenuo", "ingenuo estacional","deriva" ))
+
+
+
+#  Obtener los datos ajustados segun cada modelo 
+x11()
+plot(telmod1, main="Tasa de desocupacion trimestral", col="green")
+lines(telmod1$fitted, col="green")
+lines(telmod2$fitted, col="black")
+lines(telmod3$fitted, col="purple")
+lines(telmod4$fitted, col="orange")
+legend("topleft", lty=1, col=c("green", "black","purple", "orange"), legend = c("media","ingenuo", "ingenuo estacional","deriva" ))
+names(telmod1)
