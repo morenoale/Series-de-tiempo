@@ -51,6 +51,10 @@ tasadesocupacion417
 # sueldo, salario o jornal, por las actividades realizadas. 
 # MH_COL=2, trabajadores subordinados y remunerados. Asalariados Formales
 # ENT=09, chihuahua
+# CLASE1 = Clasificacion de la poblacion en PEA y PNEA
+# CLASE2 = Clasificacion de la poblacion en ocupada y no ocupada; disponible y no disponible
+# CLASE3 = Clasificacion de la poblacion en ocupada plena, sin pago, ausente con nexo laboral y retorno, desocupada
+
 # Primer trismestre, 2017
 sdemt117<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt117.dbf"))
 asalariado <- subset(sdemt117,ENT==09 & MH_COL==2)
