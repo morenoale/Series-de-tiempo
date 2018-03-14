@@ -1,0 +1,92 @@
+# TAREA DE TASAS, ESTADO: CHIHUAHUA (09)
+
+install.packages("foreign")
+require(foreign)
+
+###           TASAS DE DESOCUPACION
+# Porcentaje de personas economicamente activas que se encuentran sin trabajar, 
+# pero estab buscando trabajo. 
+# Calculo: Poblacion de 15 y mas de edad desocupada, dividida entre la poblacion economicamente 
+# activa de 15 y mas de edad, multiplicada por 100
+
+# 1 er trimestre, 2017
+sdemt117<- data.frame(read.dbf("C:/Users/USER/Documentssdemt117.dbf"))
+desocupado <- subset(sdemt117,ENT==09 & CLASE3==6)
+ocupado <- subset(sdemt117,ENT==09 & as.numeric(EDA)<=66 & as.numeric(EDA)>=16) 
+ocupados <-nrow(ocupado)
+desocupados <-nrow(desocupado)
+tasadesocupacion117 <- ((desocupados/ocupados)*100)
+tasadesocupacion117
+
+# segundo trimestre, 2017
+sdemt417<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt217.dbf"))
+desocupado <- subset(sdemt217,ENT==09 & CLASE3==6)
+ocupado <- subset(sdemt217,ENT==09 & as.numeric(EDA)<=66 & as.numeric(EDA)>=16)
+ocupados <-nrow(ocupado)
+desocupados <-nrow(desocupado)                  
+tasadesocupacion217 <- (desocupados/ocupados)*100
+tasadesocupacion217
+
+# tercer trimestre, 2017
+sdemt317<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt317.dbf"))
+desocupado <- subset(sdemt317,ENT==09 & CLASE3==6)
+ocupado <- subset(sdemt317,ENT==09 & as.numeric(EDA)<=66 & as.numeric(EDA)>=16)
+ocupados <-nrow(ocupado)
+desocupados <-nrow(desocupado)
+tasadesocupacion317 <- ((desocupados/ocupados)*100)
+tasadesocupacion317
+
+# cuarto trimestre, 2017
+sdemt217<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt417.dbf"))
+desocupado <- subset(sdemt417,ENT==09 & CLASE3==6)
+ocupado <- subset(sdemt417,ENT==09 & as.numeric(EDA)<=66 & as.numeric(EDA)>=16)
+ocupados <-nrow(ocupado)
+desocupados <-nrow(desocupado)
+tasadesocupacion417 <- ((desocupados/ocupados)*100)
+tasadesocupacion417
+
+
+# TASAS DE ASALARIADOS
+# Representa  a  la  población  que  percibe  de  la  unidad económica para la que trabaja un 
+# sueldo, salario o jornal, por las actividades realizadas. 
+# MH_COL=2, trabajadores subordinados y remunerados. Asalariados Formales
+# ENT=09, chihuahua
+# Primer trismestre, 2017
+sdemt117<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt117.dbf"))
+asalariado <- subset(sdemt117,ENT==09 & MH_COL==2)
+ocupado <- subset(sdemt117,ENT==09 & CLASE2==1)
+ocupados <-nrow(ocupado)
+asalariados <-nrow(asalariado)
+tasaasalariados117 <- ((asalariados/ocupados)*100)
+tasaasalariados117
+
+# Segundo trimestre, 2017
+sdemt217<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt217.dbf"))
+asalariado <- subset(sdemt217,ENT==09 & MH_COL==2)
+ocupado <- subset(sdemt217,ENT==09 & CLASE2==1)
+ocupados <-nrow(ocupado)
+asalariados <-nrow(asalariado)
+tasaasalariados217 <- ((asalariados/ocupados)*100)
+tasaasalariados217
+
+
+# Tercer trimestre, 2017
+sdemt317<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt317.dbf"))
+asalariado <- subset(sdemt317,ENT==09 & MH_COL==2)
+ocupado <- subset(sdemt317,ENT==09 & CLASE2==1)
+ocupados <-nrow(ocupado)
+asalariados <-nrow(asalariado)
+tasaasalariados317 <- ((asalariados/ocupados)*100)
+tasaasalariados317
+
+
+# Cuarto trimestre, 2017
+sdemt417<- data.frame(read.dbf("C:/Users/USER/Documents/sdemt417.dbf"))
+asalariado <- subset(sdemt417,ENT==09 & MH_COL==2)
+ocupado <- subset(sdemt417,ENT==09 & CLASE2==1)
+ocupados <-nrow(ocupado)
+asalariados <-nrow(asalariado)                  
+tasaasalariados417 <- (asalariados/ocupados)*100
+tasaasalariados417
+
+# Pendintes: TIL. 
