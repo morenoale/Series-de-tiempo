@@ -1,20 +1,14 @@
 require(foreign)
-aa <- read.dbf("C:/Users/USUARIO/Documents/coe1t417.dbf")
-class(aa$P1)
-# de factor a numerico, primero a caracter
-aa$P1 <- as.numeric(as.character(aa$P1))
-aa$P1A1 <- as.numeric(as.character(aa$P1A1))
-aa$P1A2 <- as.numeric(as.character(aa$P1A2))
-aa$P1B <- as.numeric(as.character(aa$P1B))
-aa$P1C <- as.numeric(as.character(aa$P1C))
-aa$P1D <- as.numeric(as.character(aa$P1D))
-aa$P1E <- as.numeric(as.character(aa$P1E))
+coe1<-read.dbf("C://Users//USUARIO//Documents//2017trim4_dbf//coe1t417.dbf")
 
+##Obtener a la población ocupada
 
-ocupa <- subset(aa,aa$P1==1 | aa$P1A1==1 | aa$P1A2==2 
-                | aa$P1B==1 | aa$P1C==1 | aa$P1C==2 | aa$P1C==3
-                | aa$P1C==4 | aa$P1D==1 | aa$P1E==1)
-sum(table(aa$P3))
-table(aa$P1==1)
-table(aa$P1B==1)
-# no quedo bien. :(
+coe1$P1<- as.numeric(as.character(coe1$P1))
+coe1$P1A1<- as.numeric(as.character(coe1$P1A1))
+coe1$P1A2<- as.numeric(as.character(coe1$P1A2))
+coe1$P1C<- as.numeric(as.character(coe1$P1C))
+coe1$P1D<- as.numeric(as.character(coe1$P1D))
+coe1$P1E<- as.numeric(as.character(coe1$P1E))
+
+ocupa <-subset(coe1,coe1$P1==1 | coe1$P1A1==1 | coe1$P1A2==2 |coe1$P1C==1|coe1$P1C==2|coe1$P1C==3|coe1$P1C==4|coe1$P1D==1|coe1$P1E==1)
+sum(table(coe1$P3))
