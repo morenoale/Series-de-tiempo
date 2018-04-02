@@ -1,0 +1,38 @@
+#EJERCICIO
+
+#Elegir una st con tendencia y realizar 3 graficas aplicando todos los modelos
+#Con valores ajustados
+#Pronosticos
+#Ajustados y pronosticos
+
+#Analizar y justificar con que modelo se queda
+#SES, holt, h-exponencial, aditivo amortiguado, multi amortiguado
+
+#Esta misma serie la cortas 4 o 5 periodos antes de la ultima observacion y grafican ajustados y pronosticos
+
+# se descargaron datos de acciones de apple. con fecha del 4 de abril del 2016 al 4 de abril del 2018. 
+# Con frecuencia diaria. 
+
+apple<-read.csv("C://Users//USUARIO//Desktop//apple.csv")
+View(apple)
+applets <- ts(apple, frequency = 252)
+ 
+require(fpp)
+# MODELOS
+
+##SES
+mod1<-ses(applets,h=5,initial = "simple", alpha = .1)
+mod1$fitted
+applets
+
+##METODO HOLT LINEAL
+mod2<- holt(applets, alpha = .8, beta=.5, initial = "simple",h=5)
+mod2
+##GRAFICA
+x11()
+plot(mod1)
+lines(mod1$fitted, col="green")
+lines(mod2$fitted, col="blue")
+lines(mod1$mean, col="green")
+lines(mod2$mean, col="blue")
+
