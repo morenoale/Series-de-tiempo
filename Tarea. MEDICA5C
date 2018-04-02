@@ -1,0 +1,25 @@
+#TAREA
+# Alejandra Moreno García
+
+# De ENOE, Variable: MEDICA5C; 4 Trimestre, Año 2017
+# Clasificación de la población ocupada por prestaciones de salud
+
+# 1) Sin prestaciones
+# 2) Solo acceso a instituciones de salud
+# 3) Acceso de instituciones de salud y otras prestaciones
+# 4) No tiene acceso a insituciones de salud pero si a otras prestaciones
+# 5) No especificado. 
+
+install.packages("foreign")
+require(foreign)
+sdemt417<- read.dbf("C://Users//USER//Documents//sdemt417.dbf")
+View(sdemt417)
+table(sdemt417$MEDICA5C)
+table(sdemt417$MEDICA5C==0) #222224
+table(sdemt417$MEDICA5C==1) #85523
+table(sdemt417$MEDICA5C==2) #3354
+table(sdemt417$MEDICA5C==3) #66314
+table(sdemt417$MEDICA5C==4) #13001
+table(sdemt417$MEDICA5C==5) #1204
+
+# Total de observaciones = 391620
