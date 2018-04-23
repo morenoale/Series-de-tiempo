@@ -1,0 +1,19 @@
+pib <- read.csv("C:/Users/USUARIO/Downloads/PIB CHIDO4eeewewewew.csv", header=F)
+pibts <- ts(pib, start=1961, frequency = 1)
+require(fpp)
+mod1 <- auto.arima(pibts, seasonal = F)
+mod1
+x11()
+plot(forecast(mod1,h=10))
+
+
+
+# Con la funcion auto.rima encontrar el modelo arima de las sig ST y plantearlo en ecuacion. 
+# APPLE
+apple <- read.csv("file:///C:/Users/USUARIO/Downloads/AAPL.csv", header = F)
+applets <- ts(apple,start = 2017, frequency = 252)
+mod1 <- auto.arima(applets, seasonal = F)
+mod1
+x11()
+plot(forecast(mod1,h=10))
+# No se puede planear una ecuacion, por lo que no es buen modelo para pronosticar.
