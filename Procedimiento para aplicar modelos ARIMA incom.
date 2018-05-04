@@ -1,0 +1,13 @@
+# 1.- Bajar Serie de tiempo de ENOE 
+#   - Tasa asalariados
+#   - Subocupación
+#   - TIL 1
+indicadores <- read.csv("C:/Users/USUARIO/Documents/tasas.csv")
+
+# 2.- Crear la ST 2005 a 2015
+indicadorests <- ts(indicadores,start = 2005, frequency = 4)
+View(indicadorests)
+
+# 3.- Aplicar ARIMA a la ST
+
+# 4.- Pronosticar la ST y contrastarlo con los datos originales 2015 a 2017
