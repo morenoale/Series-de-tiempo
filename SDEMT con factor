@@ -1,0 +1,6 @@
+aa <- read.csv("C:/Users/USUARIO/Downloads/SDEMT118.CSV")
+table(aa$sex)
+install.packages("questionr")
+require(questionr)
+wtd.table(aa$sex, weights = aa$fac) # Factor de expansion. 
+wtd.table(aa$clase2, weights = aa$fac)
